@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class ParkingLot {
     public static final int DEFAULT_CAPACITY = 10;
-    public static final String NO_AVAILABLE_POSITION_ERROR_MESSAGE = "No available position.";
-    public static final String UNRECOGNIZED_PARKING_TICKET_ERROR_MESSAGE = "Unrecognized parking ticket.";
     private final Map<ParkingTicket, Car> cars = new HashMap<>();
 
     private final int capacity;
@@ -35,5 +33,13 @@ public class ParkingLot {
             throw new UnrecognizedTicketException();
         }
         return cars.remove(parkingTicket);
+    }
+
+    public int getAvailableCapacity() {
+        return DEFAULT_CAPACITY - cars.size();
+    }
+
+    public boolean hasAvailableCapacity() {
+        return !isParkingLotFull();
     }
 }
