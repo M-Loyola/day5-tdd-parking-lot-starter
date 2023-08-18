@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class StandardParkingBoyTest {
     ParkingLot firstParkingLot = new ParkingLot();
     ParkingLot secondParkingLot = new ParkingLot();
-    List<ParkingLot> parkingLots = List.of(firstParkingLot,secondParkingLot);
+    List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
     @Test
-    void should_park_to_first_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_and_a_car(){
+    void should_park_to_first_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_and_a_car() {
         //Given
         Car car = new Car();
         //When
@@ -26,8 +27,9 @@ public class StandardParkingBoyTest {
         Assertions.assertEquals(9, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(10, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
-    void should_park_to_second_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car(){
+    void should_park_to_second_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
         List<Car> cars = new ArrayList<>();
 
@@ -45,8 +47,9 @@ public class StandardParkingBoyTest {
         Assertions.assertEquals(0, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(9, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
-    void should_return_the_right_car_for_each_ticket_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_two_parking_tickets(){
+    void should_return_the_right_car_for_each_ticket_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_two_parking_tickets() {
         //Given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -60,8 +63,9 @@ public class StandardParkingBoyTest {
         Assertions.assertEquals(car2, fetchedCar2);
 
     }
+
     @Test
-    void should_return_nothing_with_an_error_message_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_an_unrecognized_ticket(){
+    void should_return_nothing_with_an_error_message_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_an_unrecognized_ticket() {
         //Given
         ParkingTicket unrecognizedTicket = new ParkingTicket();
         //When
@@ -71,8 +75,9 @@ public class StandardParkingBoyTest {
         });
         Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
     @Test
-    void should_return_nothing_with_an_error_message_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_a_used_ticket(){
+    void should_return_nothing_with_an_error_message_when_fetch_car_given_a_standard_parking_boy_and_two_parking_lots_and_a_used_ticket() {
         //Given
         Car car = new Car();
         ParkingTicket ticket = standardParkingBoy.park(car);
@@ -84,8 +89,9 @@ public class StandardParkingBoyTest {
         });
         Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
     @Test
-    void should_return_nothing_with_error_message_when_park_car_given_a_standard_parking_boy_and_two_full_parking_lots_and_a_car(){
+    void should_return_nothing_with_error_message_when_park_car_given_a_standard_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
         List<Car> cars = new ArrayList<>();
 

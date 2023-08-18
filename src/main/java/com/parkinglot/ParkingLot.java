@@ -15,12 +15,13 @@ public class ParkingLot {
     public ParkingLot() {
         this.capacity = DEFAULT_CAPACITY;
     }
+
     public ParkingTicket park(Car car) {
         ParkingTicket parkingTicket = new ParkingTicket();
         if (isParkingLotFull()) {
             throw new NoAvailablePositionException();
         }
-        cars.put(parkingTicket,car);
+        cars.put(parkingTicket, car);
         return parkingTicket;
     }
 
@@ -28,7 +29,7 @@ public class ParkingLot {
         return cars.size() == capacity;
     }
 
-    public Car fetch (ParkingTicket parkingTicket) {
+    public Car fetch(ParkingTicket parkingTicket) {
         if (!cars.containsKey(parkingTicket)) {
             throw new UnrecognizedTicketException();
         }
