@@ -12,7 +12,7 @@ public class StandardParkingBoy {
 
     public ParkingTicket park(Car car) {
         return parkingLots.stream()
-                .filter(parkingLot -> parkingLot.hasAvailableCapacity())
+                .filter(ParkingLot::hasAvailableCapacity)
                 .findFirst()
                 .orElseThrow(NoAvailablePositionException::new)
                 .park(car);
