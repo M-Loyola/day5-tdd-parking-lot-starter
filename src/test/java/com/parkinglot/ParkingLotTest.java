@@ -76,7 +76,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_park_car_given_parking_lot_no_position_and_car() {
+    void should_return_nothing_with_error_message_when_park_car_given_parking_lot_no_position_and_car() {
         //Given
         Car car1 = new Car();
         Car car2 = new Car();
@@ -100,8 +100,10 @@ public class ParkingLotTest {
         parkingLot.park(car8);
         parkingLot.park(car9);
         parkingLot.park(car10);
-        ParkingTicket ticket = parkingLot.park(car11);
         //Then
-        Assertions.assertNull(ticket);
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> {
+            parkingLot.park(car11);
+        });
+        Assertions.assertEquals("No available position.",exception.getMessage());
     }
 }

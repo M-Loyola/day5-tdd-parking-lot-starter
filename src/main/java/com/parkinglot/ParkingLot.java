@@ -16,7 +16,9 @@ public class ParkingLot {
     }
     public ParkingTicket park(Car car) {
         ParkingTicket parkingTicket = new ParkingTicket();
-        if (isParkingLotFull()) return null;
+        if (isParkingLotFull()) {
+            throw new UnrecognizedTicketException("No available position.");
+        }
         cars.put(parkingTicket,car);
         return parkingTicket;
     }
