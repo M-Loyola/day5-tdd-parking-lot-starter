@@ -29,8 +29,29 @@ Case 6: Given a standard parking boy, who manages two parking lots both without 
     When park the car, Then return nothing with error message "No Available Position"
 
 # Story5
-AC1: The smart parking boy will always park cars to the parking low which contains more empty positions
-AC2: All the requirements in Story 1-3 must be satisfied
+Case 1: Given a smart parking boy who manages two parking lots, both with available position and car,
+    When park the car, Then the car will be parked to the first parking lot
+
+Case 2: Given a smart parking boy who manages two parking lots, first is full and second has available position and a car,
+    When park the car, Then the car will be parked in the second parking lot
+
+Case 3: Given a smart parking boy who manages two parking lots, second parking lot has more available positions and a car,
+    When park the car, Then the car will be parked in the second parking lot
+
+Case 4: Given a smart parking boy who manages two parking lots, first parking lot has more available positions and a car,
+    When park the car, Then the car will be parked in the first parking lot
+
+Case 5: Given a smart parking boy who manages two parking lots, both with equal available positions and car,
+    When park the car, Then the car will be parked to the first parking lot
+
+Case 6: Given a smart parking boy who manages two parking lots, and an unrecognized ticket ,
+    When fetch the car, Then return nothing with error message "Unrecognized parking ticket"
+
+Case 7: Given a smart parking boy who manages two parking lots, and a used ticket,
+    When fetch the car, Then return nothing with error "Unrecognized parking ticket"
+
+Case 8: Given a smart parking boy, who manages two parking lots both without any position and a car,
+    When park the car, Then return nothing with error message "No Available Position"
 
 # Story6
 AC1: The super parking boy will always park cars to the parking lot which has a larger available position rate
