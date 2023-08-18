@@ -31,26 +31,21 @@ Case 6: Given a standard parking boy, who manages two parking lots both without 
 # Story5
 Case 1: Given a smart parking boy who manages two parking lots, both with available position and car,
     When park the car, Then the car will be parked to the first parking lot
-
 Case 2: Given a smart parking boy who manages two parking lots, first is full and second has available position and a car,
     When park the car, Then the car will be parked in the second parking lot
-
 Case 3: Given a smart parking boy who manages two parking lots, second parking lot has more available positions and a car,
     When park the car, Then the car will be parked in the second parking lot
-
 Case 4: Given a smart parking boy who manages two parking lots, first parking lot has more available positions and a car,
     When park the car, Then the car will be parked in the first parking lot
-
 Case 5: Given a smart parking boy who manages two parking lots, both with equal available positions and car,
     When park the car, Then the car will be parked to the first parking lot
-
-Case 6: Given a smart parking boy who manages two parking lots, and an unrecognized ticket ,
+Case 6: Given a smart parking boy who manages two parking lots, both with a parked car, and two parking tickets,
+    When fetch the car twice, Then return the right car with each ticket
+Case 7: Given a smart parking boy who manages two parking lots, and an unrecognized ticket ,
     When fetch the car, Then return nothing with error message "Unrecognized parking ticket"
-
-Case 7: Given a smart parking boy who manages two parking lots, and a used ticket,
+Case 8: Given a smart parking boy who manages two parking lots, and a used ticket,
     When fetch the car, Then return nothing with error "Unrecognized parking ticket"
-
-Case 8: Given a smart parking boy, who manages two parking lots both without any position and a car,
+Case 9: Given a smart parking boy, who manages two parking lots both without any position and a car,
     When park the car, Then return nothing with error message "No Available Position"
 
 # Story6
