@@ -4,6 +4,9 @@ import com.parkinglot.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParkingLotTest {
@@ -77,33 +80,20 @@ public class ParkingLotTest {
 
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_parking_lot_no_position_and_car() {
-        //Given
-        Car car1 = new Car();
-        Car car2 = new Car();
-        Car car3 = new Car();
-        Car car4 = new Car();
-        Car car5 = new Car();
-        Car car6 = new Car();
-        Car car7 = new Car();
-        Car car8 = new Car();
-        Car car9 = new Car();
-        Car car10 = new Car();
-        Car car11 = new Car();
-        //When
-        parkingLot.park(car1);
-        parkingLot.park(car2);
-        parkingLot.park(car3);
-        parkingLot.park(car4);
-        parkingLot.park(car5);
-        parkingLot.park(car6);
-        parkingLot.park(car7);
-        parkingLot.park(car8);
-        parkingLot.park(car9);
-        parkingLot.park(car10);
-        //Then
+        List<Car> cars = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            cars.add(new Car());
+        }
+
+        for (Car car : cars) {
+            parkingLot.park(car);
+        }
+
         UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> {
-            parkingLot.park(car11);
+            parkingLot.park(new Car());
         });
-        Assertions.assertEquals("No available position.",exception.getMessage());
+
+        Assertions.assertEquals("No available position.", exception.getMessage());
     }
 }
