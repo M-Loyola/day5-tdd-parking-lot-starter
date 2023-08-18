@@ -62,15 +62,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_car_given_used_parking_ticket() {
+    void should_return_nothing_with_error_message_when_fetch_car_given_used_parking_ticket() {
         //Given
         Car car = new Car();
         ParkingTicket ticket = parkingLot.park(car);
         parkingLot.fetch(ticket);
         //When
-        Car fetchedCar = parkingLot.fetch(ticket);
         //Then
-        Assertions.assertNull(fetchedCar);
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class, () -> {
+            parkingLot.fetch(ticket);
+        });
+        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
     @Test
