@@ -55,9 +55,28 @@ public class SmartParkingBoyTest {
         }
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
+        //Then
         Assertions.assertNotNull(parkingTicket);
         Assertions.assertEquals(5, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(9, secondParkingLot.getAvailableCapacity());
+    }
+    @Test
+    void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_first_parking_lot_has_more_positions_and_a_car(){
+        //Given
+        List<Car> cars = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            cars.add(new Car());
+        }
+
+        for (Car car : cars) {
+            secondParkingLot.park(car);
+        }
+        //When
+        ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
         //Then
+        Assertions.assertNotNull(parkingTicket);
+        Assertions.assertEquals(9, firstParkingLot.getAvailableCapacity());
+        Assertions.assertEquals(5, secondParkingLot.getAvailableCapacity());
     }
 }
