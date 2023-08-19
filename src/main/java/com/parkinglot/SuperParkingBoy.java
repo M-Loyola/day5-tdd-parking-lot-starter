@@ -12,10 +12,11 @@ public class SuperParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLots.stream()
-                .filter(ParkingLot::hasAvailableCapacity)
-                .findFirst()
-                .orElseThrow(NoAvailablePositionException::new)
-                .park(car);
+       return parkingLots.stream()
+               .filter(ParkingLot::hasAvailableCapacity)
+               .max(Comparator.comparingDouble(ParkingLot::getPositionRate))
+               .stream().findFirst()
+               .orElseThrow(NoAvailablePositionException::new)
+               .park(car);
     }
 }

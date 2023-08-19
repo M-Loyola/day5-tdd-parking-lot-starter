@@ -40,6 +40,9 @@ public class ParkingLot {
     public int getAvailableCapacity() {
         return capacity - cars.size();
     }
+    public double getPositionRate() {
+        return (double) cars.size() / getCapacity();
+    }
 
     public boolean hasAvailableCapacity() {
         return !isParkingLotFull();
@@ -47,5 +50,9 @@ public class ParkingLot {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }
