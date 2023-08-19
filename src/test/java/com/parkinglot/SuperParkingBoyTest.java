@@ -13,11 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SuperParkingBoyTest {
     ParkingLot firstParkingLot = new ParkingLot();
     ParkingLot secondParkingLot = new ParkingLot();
+
     {
         secondParkingLot.setCapacity(20);
     }
+
     List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     SuperParkingBoy superParkingBoy = new SuperParkingBoy(parkingLots);
+
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_super_parking_boy_and_two_parking_lots_and_a_car() {
         //Given
@@ -29,6 +32,7 @@ public class SuperParkingBoyTest {
         Assertions.assertEquals(9, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(20, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_super_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
@@ -48,6 +52,7 @@ public class SuperParkingBoyTest {
         Assertions.assertEquals(0, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(19, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_super_parking_boy_and_second_parking_lot_has_larger_position_rate_and_a_car() {
         //Given
@@ -75,6 +80,7 @@ public class SuperParkingBoyTest {
         Assertions.assertEquals(5, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(5, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_super_parking_boy_and_first_parking_lot_has_larger_position_rate_and_a_car() {
         //Given
@@ -102,6 +108,7 @@ public class SuperParkingBoyTest {
         Assertions.assertEquals(4, firstParkingLot.getAvailableCapacity());
         Assertions.assertEquals(12, secondParkingLot.getAvailableCapacity());
     }
+
     @Test
     void should_return_the_right_car_for_each_ticket_when_fetch_car_given_a_super_parking_boy_and_two_parking_lots_and_two_parking_tickets() {
         //Given
@@ -117,6 +124,7 @@ public class SuperParkingBoyTest {
         Assertions.assertEquals(car2, fetchedCar2);
 
     }
+
     @Test
     void should_return_nothing_with_an_error_message_when_fetch_car_given_a_super_parking_boy_and_two_parking_lots_and_an_unrecognized_ticket() {
         //Given
@@ -128,6 +136,7 @@ public class SuperParkingBoyTest {
         });
         Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
     @Test
     void should_return_nothing_with_an_error_message_when_fetch_car_given_a_super_parking_boy_and_two_parking_lots_and_a_used_ticket() {
         //Given
@@ -141,6 +150,7 @@ public class SuperParkingBoyTest {
         });
         Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
+
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_a_super_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
