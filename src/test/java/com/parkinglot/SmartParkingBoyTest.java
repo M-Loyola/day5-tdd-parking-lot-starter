@@ -46,7 +46,6 @@ public class SmartParkingBoyTest {
     void should_park_to_second_parking_lot_when_park_given_a_smart_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(10);
-
         populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
@@ -60,7 +59,6 @@ public class SmartParkingBoyTest {
     void should_park_to_second_parking_lot_when_park_given_a_smart_parking_boy_and_second_parking_lot_has_more_positions_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(5);
-
         populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
@@ -74,7 +72,6 @@ public class SmartParkingBoyTest {
     void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_first_parking_lot_has_more_positions_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(5);
-
         populateParkingLot(cars, secondParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
@@ -88,7 +85,6 @@ public class SmartParkingBoyTest {
     void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_both_parking_lots_has_equal_positions_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(5);
-
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars, secondParkingLot);
         //When
@@ -143,7 +139,6 @@ public class SmartParkingBoyTest {
     void should_return_nothing_with_error_message_when_park_car_given_a_smart_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(10);
-
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars, secondParkingLot);
         //When

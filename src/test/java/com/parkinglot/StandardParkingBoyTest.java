@@ -99,7 +99,6 @@ public class StandardParkingBoyTest {
     void should_return_nothing_with_error_message_when_park_car_given_a_standard_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars();
-
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars, secondParkingLot);
         //When

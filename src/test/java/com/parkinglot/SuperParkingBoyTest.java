@@ -51,7 +51,6 @@ public class SuperParkingBoyTest {
     void should_park_to_second_parking_lot_when_park_given_a_super_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
         List<Car> cars = generateListOfCars(10);
-
         populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = superParkingBoy.park(new Car());
@@ -66,7 +65,6 @@ public class SuperParkingBoyTest {
         //Given
         List<Car> cars = generateListOfCars(5);
         List<Car> cars2 = generateListOfCars(14);
-
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars2, secondParkingLot);
         //When
@@ -82,7 +80,6 @@ public class SuperParkingBoyTest {
         //Given
         List<Car> cars = generateListOfCars(5);
         List<Car> cars2 = generateListOfCars(8);
-
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars2, secondParkingLot);
         //When
@@ -138,9 +135,7 @@ public class SuperParkingBoyTest {
         //Given
         List<Car> cars = generateListOfCars(10);
         List<Car> cars2 = generateListOfCars(20);
-
         populateParkingLot(cars, firstParkingLot);
-
         populateParkingLot(cars2, secondParkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {

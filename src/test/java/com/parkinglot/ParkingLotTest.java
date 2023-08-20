@@ -31,10 +31,8 @@ public class ParkingLotTest {
     void should_return_ticket_when_park_given_parking_lot_a_car() {
         //Given
         Car car = new Car();
-
         //When
         ParkingTicket parkingTicket = parkingLot.park(car);
-
         //Then
         Assertions.assertNotNull(parkingTicket);
     }
@@ -57,11 +55,9 @@ public class ParkingLotTest {
         Car car2 = new Car();
         ParkingTicket ticket1 = parkingLot.park(car1);
         ParkingTicket ticket2 = parkingLot.park(car2);
-
         //When
         Car fetchedCar1 = parkingLot.fetch(ticket1);
         Car fetchedCar2 = parkingLot.fetch(ticket2);
-
         //Then
         Assertions.assertEquals(car1, fetchedCar1);
         Assertions.assertEquals(car2, fetchedCar2);
@@ -93,13 +89,14 @@ public class ParkingLotTest {
 
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_parking_lot_no_position_and_car() {
+        //Given
         List<Car> cars = generateListOfCars();
         populateParkingLot(cars, parkingLot);
-
+        //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
             throw new NoAvailablePositionException();
         });
-
+        //Then
         Assertions.assertEquals("No available position.", exception.getMessage());
     }
 }
