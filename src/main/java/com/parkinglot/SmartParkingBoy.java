@@ -5,11 +5,11 @@ import com.parkinglot.exception.UnrecognizedTicketException;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SmartParkingBoy {
     private final List<ParkingLot> parkingLots;
+
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }

@@ -3,7 +3,6 @@ package com.parkinglot;
 import com.parkinglot.exception.NoAvailablePositionException;
 import com.parkinglot.exception.UnrecognizedTicketException;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +39,7 @@ public class ParkingLot {
     public int getAvailableCapacity() {
         return capacity - cars.size();
     }
+
     public double getPositionRate() {
         return (double) cars.size() / getCapacity();
     }
