@@ -21,6 +21,20 @@ public class SuperParkingBoyTest {
     List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     SuperParkingBoy superParkingBoy = new SuperParkingBoy(parkingLots);
 
+    private static List<Car> generateListOfCars(int numberOfCars) {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < numberOfCars; i++) {
+            cars.add(new Car());
+        }
+        return cars;
+    }
+
+    private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
+        for (Car car : cars) {
+            parkingLot.park(car);
+        }
+    }
+
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_super_parking_boy_and_two_parking_lots_and_a_car() {
         //Given
@@ -36,15 +50,9 @@ public class SuperParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_super_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(10);
 
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = superParkingBoy.park(new Car());
         //Then
@@ -56,23 +64,11 @@ public class SuperParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_super_parking_boy_and_second_parking_lot_has_larger_position_rate_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
-        List<Car> cars2 = new ArrayList<>();
+        List<Car> cars = generateListOfCars(5);
+        List<Car> cars2 = generateListOfCars(14);
 
-        for (int i = 0; i < 5; i++) {
-            cars.add(new Car());
-        }
-
-        for (int i = 0; i < 14; i++) {
-            cars2.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
-        for (Car car : cars2) {
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
+        populateParkingLot(cars2, secondParkingLot);
         //When
         ParkingTicket parkingTicket = superParkingBoy.park(new Car());
         //Then
@@ -84,23 +80,11 @@ public class SuperParkingBoyTest {
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_super_parking_boy_and_first_parking_lot_has_larger_position_rate_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
-        List<Car> cars2 = new ArrayList<>();
+        List<Car> cars = generateListOfCars(5);
+        List<Car> cars2 = generateListOfCars(8);
 
-        for (int i = 0; i < 5; i++) {
-            cars.add(new Car());
-        }
-
-        for (int i = 0; i < 8; i++) {
-            cars2.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
-        for (Car car : cars2) {
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
+        populateParkingLot(cars2, secondParkingLot);
         //When
         ParkingTicket parkingTicket = superParkingBoy.park(new Car());
         //Then
@@ -152,24 +136,12 @@ public class SuperParkingBoyTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_a_super_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
-        List<Car> cars2 = new ArrayList<>();
+        List<Car> cars = generateListOfCars(10);
+        List<Car> cars2 = generateListOfCars(20);
 
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
+        populateParkingLot(cars, firstParkingLot);
 
-        for (int i = 0; i < 20; i++) {
-            cars2.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
-
-        for (Car car : cars2) {
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars2, secondParkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
             throw new NoAvailablePositionException();
