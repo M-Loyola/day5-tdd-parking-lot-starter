@@ -16,6 +16,20 @@ public class SmartParkingBoyTest {
     List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
 
+    private static List<Car> generateListOfCars(int numberOfCars) {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < numberOfCars; i++) {
+            cars.add(new Car());
+        }
+        return cars;
+    }
+
+    private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
+        for (Car car : cars) {
+            parkingLot.park(car);
+        }
+    }
+
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_two_parking_lots_and_a_car() {
         //Given
@@ -31,15 +45,9 @@ public class SmartParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_smart_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(10);
 
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
         //Then
@@ -51,15 +59,9 @@ public class SmartParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_smart_parking_boy_and_second_parking_lot_has_more_positions_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(5);
 
-        for (int i = 0; i < 5; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
         //Then
@@ -71,15 +73,9 @@ public class SmartParkingBoyTest {
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_first_parking_lot_has_more_positions_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(5);
 
-        for (int i = 0; i < 5; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, secondParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
         //Then
@@ -91,16 +87,10 @@ public class SmartParkingBoyTest {
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_smart_parking_boy_and_both_parking_lots_has_equal_positions_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(5);
 
-        for (int i = 0; i < 5; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
+        populateParkingLot(cars, secondParkingLot);
         //When
         ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
         //Then
@@ -152,16 +142,10 @@ public class SmartParkingBoyTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_a_smart_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(10);
 
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
+        populateParkingLot(cars, secondParkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
             throw new NoAvailablePositionException();
