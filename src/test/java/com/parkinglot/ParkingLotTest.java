@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ParkingLotTest {
     ParkingLot parkingLot = new ParkingLot();
 
-    private static List<Car> generateListOfCars(int numberOfCars) {
-        return IntStream.range(0, numberOfCars)
+    private static List<Car> generateListOfCars() {
+        return IntStream.range(0, 10)
                 .mapToObj(i -> new Car())
                 .collect(Collectors.toList());
     }
@@ -87,7 +87,7 @@ public class ParkingLotTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_parking_lot_no_position_and_car() {
         //Given
-        List<Car> cars = generateListOfCars(10);
+        List<Car> cars = generateListOfCars();
         populateParkingLot(cars, parkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
