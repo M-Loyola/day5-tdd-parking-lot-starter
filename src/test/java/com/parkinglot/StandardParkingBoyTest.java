@@ -5,8 +5,9 @@ import com.parkinglot.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -16,12 +17,10 @@ public class StandardParkingBoyTest {
     List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
 
-    private static List<Car> generateListOfCars() {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-        return cars;
+    private static List<Car> generateListOfCars(int numberOfCars) {
+        return IntStream.range(0, numberOfCars)
+                .mapToObj(i -> new Car())
+                .collect(Collectors.toList());
     }
 
     private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
@@ -43,7 +42,7 @@ public class StandardParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
-        List<Car> cars = generateListOfCars();
+        List<Car> cars = generateListOfCars(10);
         populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = standardParkingBoy.park(new Car());
@@ -96,7 +95,7 @@ public class StandardParkingBoyTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_a_standard_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
-        List<Car> cars = generateListOfCars();
+        List<Car> cars = generateListOfCars(10);
         populateParkingLot(cars, firstParkingLot);
         populateParkingLot(cars, secondParkingLot);
         //When

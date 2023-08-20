@@ -5,8 +5,9 @@ import com.parkinglot.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,11 +18,9 @@ public class SmartParkingBoyTest {
     SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
 
     private static List<Car> generateListOfCars(int numberOfCars) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < numberOfCars; i++) {
-            cars.add(new Car());
-        }
-        return cars;
+        return IntStream.range(0, numberOfCars)
+                .mapToObj(i -> new Car())
+                .collect(Collectors.toList());
     }
 
     private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {

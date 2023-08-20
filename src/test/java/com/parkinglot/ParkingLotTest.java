@@ -5,20 +5,19 @@ import com.parkinglot.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParkingLotTest {
     ParkingLot parkingLot = new ParkingLot();
 
-    private static List<Car> generateListOfCars() {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-        return cars;
+    private static List<Car> generateListOfCars(int numberOfCars) {
+        return IntStream.range(0, numberOfCars)
+                .mapToObj(i -> new Car())
+                .collect(Collectors.toList());
     }
 
     private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
@@ -88,7 +87,7 @@ public class ParkingLotTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_parking_lot_no_position_and_car() {
         //Given
-        List<Car> cars = generateListOfCars();
+        List<Car> cars = generateListOfCars(10);
         populateParkingLot(cars, parkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
