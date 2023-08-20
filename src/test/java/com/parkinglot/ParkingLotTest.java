@@ -22,9 +22,7 @@ public class ParkingLotTest {
     }
 
     private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
-        for (Car car : cars) {
-            parkingLot.park(car);
-        }
+        cars.forEach(parkingLot::park);
     }
 
     @Test
