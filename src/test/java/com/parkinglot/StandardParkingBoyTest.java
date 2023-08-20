@@ -16,6 +16,20 @@ public class StandardParkingBoyTest {
     List<ParkingLot> parkingLots = List.of(firstParkingLot, secondParkingLot);
     StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
 
+    private static List<Car> generateListOfCars(int numberOfCars) {
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < numberOfCars; i++) {
+            cars.add(new Car());
+        }
+        return cars;
+    }
+
+    private void populateParkingLot(List<Car> cars, ParkingLot parkingLot) {
+        for (Car car : cars) {
+            parkingLot.park(car);
+        }
+    }
+
     @Test
     void should_park_to_first_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_and_a_car() {
         //Given
@@ -31,15 +45,8 @@ public class StandardParkingBoyTest {
     @Test
     void should_park_to_second_parking_lot_when_park_given_a_standard_parking_boy_and_two_parking_lots_first_parking_lot_is_full_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-        }
+        List<Car> cars = generateListOfCars(10);
+        populateParkingLot(cars, firstParkingLot);
         //When
         ParkingTicket parkingTicket = standardParkingBoy.park(new Car());
         //Then
@@ -91,16 +98,10 @@ public class StandardParkingBoyTest {
     @Test
     void should_return_nothing_with_error_message_when_park_car_given_a_standard_parking_boy_and_two_full_parking_lots_and_a_car() {
         //Given
-        List<Car> cars = new ArrayList<>();
+        List<Car> cars = generateListOfCars(10);
 
-        for (int i = 0; i < 10; i++) {
-            cars.add(new Car());
-        }
-
-        for (Car car : cars) {
-            firstParkingLot.park(car);
-            secondParkingLot.park(car);
-        }
+        populateParkingLot(cars, firstParkingLot);
+        populateParkingLot(cars, secondParkingLot);
         //When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> {
             throw new NoAvailablePositionException();
